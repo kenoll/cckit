@@ -18,7 +18,7 @@ CC_names_l2a[1:2] <- sapply(CC_names_l2a[1:2], as.character)
 
 alias2line <- function(df){
 
-    alias2linebase <- function(df){
+    alias2line.rixbase <- function(df){
       df$dam <- as.character(df$dam)
       df$sire <- as.character(df$sire)
 
@@ -34,17 +34,31 @@ alias2line <- function(df){
 
       df["RIX"]=paste(df$dam,df$sire,sep="x")
       return(df)
-      }
+    }
+
+    alias2line.base <- function(df,mice){
+      df[mice] <- as.character(df[[mice]])
+      colnames(CC_names_a2l)[1] <- mice
+      df <- merge(df,CC_names_a2l[1:2],by=mice,all.x=T)
+      df[mice] <- df["CCLine"]
+      df <- df[-length(df)]
+    }
 
   if(any("RIX" %in% colnames(df)) && any(!("dam" %in% colnames(df)))) {
     df <- rixsplit(df)
-    df <- alias2linebase(df)
+    df <- alias2line.rixbase(df)
     df <- df[-(1:2)]
-  } else {
-    if(any("dam" %in% colnames(df))){
-      df <- alias2linebase(df)
-    }
-  }
+    } else if(any("dam" %in% colnames(df))){
+        df <- alias2line.rixbase(df)
+        } else if(any("Strain" %in% colnames(df))){
+            df <- alias2line.base(df,"Strain")
+        } else if(any("strain" %in% colnames(df))){
+          df <- alias2line.base(df,"strain")
+        } else if(any("Line" %in% colnames(df))){
+          df <- alias2line.base(df,"Line")
+        } else if(any("line" %in% colnames(df))){
+          df <- alias2line.base(df,"line")
+        }
   return(df)
 }
 
