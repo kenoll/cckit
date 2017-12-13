@@ -1,23 +1,3 @@
-#' @title Split RIX
-#' @description Split RIX (CC0XXxCC0XX) into dam and sire
-#'
-#' @param df
-#'
-#' @return df
-#'
-#' @examples
-#'
-#' @export
-
-rixsplit <- function(df) {
-  if(any(!("RIX" %in% colnames(df)))) stop('RIX is not a column name in the dataset')
-  df$RIX <- as.character(df$RIX)
-  RIX_sep <- data.frame(do.call("rbind", strsplit(df$RIX,"x")))
-  colnames(RIX_sep)[1:2] <- c("dam","sire")
-  df <- cbind(RIX_sep,df)
-  return(df)
-}
-
 #' @title Add haplotypes
 #'
 #' @description Add haplotypes at a locus of interest to CC data frame
@@ -36,27 +16,27 @@ addhap <- function(df,haplos,locus.name) {
 
   add.stat.base <- function(df,haplos,locus.name) {
     if(any("founders" %in% colnames(haplos))){
-      haplos <- haplos[c(colnames(haplos[1]),"allele.effect","founders")]
+      haplos <- haplos[c(colnames(haplos[1]),"allele.effects","founders")]
 
       colnames(haplos)[1] <- "sire"
       df <- merge(df,haplos)
-      names(df)[names(df) == 'allele.effect'] <- paste0("sire_",locus.name)
+      names(df)[names(df) == 'allele.effects'] <- paste0("sire_",locus.name)
       names(df)[names(df) == 'founders'] <- paste0("sire.founder_",locus.name)
 
       colnames(haplos)[1] <- "dam"
       df <- merge(df,haplos)
-      names(df)[names(df) == 'allele.effect'] <- paste0("dam_",locus.name)
+      names(df)[names(df) == 'allele.effects'] <- paste0("dam_",locus.name)
       names(df)[names(df) == 'founders'] <- paste0("dam.founder_",locus.name)
     } else {
-      haplos <- haplos[c(colnames(haplos[1]),"allele.effect")]
+      haplos <- haplos[c(colnames(haplos[1]),"allele.effects")]
 
       colnames(haplos)[1] <- "sire"
       df <- merge(df,haplos)
-      names(df)[names(df) == 'allele.effect'] <- paste0("sire_",locus.name)
+      names(df)[names(df) == 'allele.effects'] <- paste0("sire_",locus.name)
 
       colnames(haplos)[1]="dam"
       df <- merge(df,haplos)
-      names(df)[names(df) == 'allele.effect'] <- paste0("dam_",locus.name)
+      names(df)[names(df) == 'allele.effects'] <- paste0("dam_",locus.name)
     }
 
     df$additive <- rowSums(df[c(paste0("dam_",locus.name),paste0("sire_",locus.name))])
@@ -79,7 +59,7 @@ addhap <- function(df,haplos,locus.name) {
     } else {
       colnames(haplos)[1] <- colnames(df)[1]
       df <- merge(df,haplos)
-      names(df)[names(df) == 'allele.effect'] <- locus.name
+      names(df)[names(df) == 'allele.effects'] <- locus.name
     }
   }
   return(df)
@@ -109,7 +89,7 @@ addmx1  <-  function(df,haplos,locus.name,cast.score=0.5){
   if (missing(cast.score)) cast.col=10
 
   mx1.score <- mx1[c(1,2,cast.col)]
-  colnames(mx1.score)[3] <- "allele.effect"
+  colnames(mx1.score)[3] <- "allele.effects"
 
   addhap(df,haplos=mx1.score,locus.name="mx1")
   return(df)
