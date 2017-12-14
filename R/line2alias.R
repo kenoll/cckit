@@ -1,9 +1,3 @@
-CC_names_a2l <- read.csv("~/Dropbox/Heise/CC/CC_names_a2l.csv")
-CC_names_a2l[1:2] <-  sapply(CC_names_a2l[1:2], as.character)
-
-CC_names_l2a <- read.csv("~/Dropbox/Heise/CC/CC_names_l2a.csv")
-CC_names_l2a[1:2] <- sapply(CC_names_l2a[1:2], as.character)
-
 #' @title Alias 2 Line
 #'
 #' @description Old CC Alias to New CC Line

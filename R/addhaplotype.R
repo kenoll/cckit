@@ -81,7 +81,6 @@ addhap <- function(df,haplos,locus.name) {
 #'
 #' @export
 
-
 addmx1  <-  function(df,haplos,locus.name,cast.score=0.5){
   if (cast.score==1) cast.col=9
   if (cast.score==0.5) cast.col=10
