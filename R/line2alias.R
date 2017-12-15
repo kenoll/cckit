@@ -14,6 +14,7 @@
 alias2line <- function(df,strain.col,is.rix=F){
 
   if (is.rix == F) {
+
     df[strain.col] <- as.character(df[[strain.col]])
     colnames(CC_names_a2l)[1] <- strain.col
     df <- merge(df,CC_names_a2l[1:2],by=strain.col,all.x=T)
@@ -42,7 +43,7 @@ alias2line <- function(df,strain.col,is.rix=F){
       }
 
       if (any("RIX" %in% colnames(df)) && any(!("dam" %in% colnames(df)))) {
-        df <- rixsplit(df)
+        df <- splitrix(df)
         df <- alias2line.rixbase(df)
         df <- df[-(1:2)]
         } else if (any("dam" %in% colnames(df))){
@@ -51,18 +52,6 @@ alias2line <- function(df,strain.col,is.rix=F){
         return(df)
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 #' @title Line 2 Alias
@@ -79,6 +68,9 @@ alias2line <- function(df,strain.col,is.rix=F){
 
 line2alias <- function(df,strain.col,is.rix=F){
   if (is.rix == F) {
+
+    if(any(grepl("[[:punct:]]",df[[strain.col]]))){
+      df[[strain.col]] <- gsub("[[:punct:]].*","",df[[strain.col]])}
 
     df[strain.col] <- as.character(df[[strain.col]])
     colnames(CC_names_l2a)[1] <- strain.col
@@ -109,7 +101,7 @@ line2alias <- function(df,strain.col,is.rix=F){
     }
 
     if(any("RIX" %in% colnames(df)) && any(!("dam" %in% colnames(df)))) {
-      df <- rixsplit(df)
+      df <- splitrix(df)
       df <- line2alias.rixbase(df)
       df <- df[-(1:2)]
     } else if(any("dam" %in% colnames(df))){
