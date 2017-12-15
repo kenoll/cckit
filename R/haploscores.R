@@ -8,7 +8,7 @@
 #'
 #' @return region
 #'
-#' @examples head(locushaplos(1,10000000,13000000))
+#' @examples head(locushaplos(1,20.2,21.4))
 #'
 #' @export
 
@@ -16,18 +16,18 @@
 #functions
 locushaplos <- function(chromo,start,end){
   region.2 <- subset(mosaics,
-                  mosaics$start_position<=start &
-                    mosaics$end_position>=start &
+                  mosaics$start_position<=start*1000000 &
+                    mosaics$end_position>=start*1000000 &
                     mosaics$chromosome==chromo)
 
   region.3 <- subset(mosaics,
-                  mosaics$start_position<=end &
-                    mosaics$end_position>=end &
+                  mosaics$start_position<=end*1000000 &
+                    mosaics$end_position>=end*1000000 &
                     mosaics$chromosome==chromo)
 
   region.4 <- subset(mosaics,
-                  mosaics$start_position>=start &
-                    mosaics$end_position<=end &
+                  mosaics$start_position>=start*1000000 &
+                    mosaics$end_position<=end*1000000 &
                     mosaics$chromosome==chromo)
 
   region <- merge(region.2,region.3,all=T)
