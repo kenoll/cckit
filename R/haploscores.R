@@ -126,7 +126,7 @@ haploscores3 <- function(chromo,start,end,allele.effects){
 #' @export
 
 #### for effects only, not haplotypes ####
-get.quickeffects=function(chromo,start,end,allele.effects){
+quickhaplos=function(chromo,start,end,allele.effects){
   haplos=haploscores(chromo,start,end,allele.effects)
   score.avg=summaryBy(allele.effects~strain+alias+chromosome+haplotype,
                       data=haplos, FUN=mean, na.rm=T)
