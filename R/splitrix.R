@@ -9,7 +9,7 @@
 #'
 #' @export
 
-rixsplit <- function(df) {
+splitrix <- function(df) {
   if(any(!("RIX" %in% colnames(df)))) stop('RIX is not a column name in the dataset')
   df$RIX <- as.character(df$RIX)
   RIX_sep <- data.frame(do.call("rbind", strsplit(df$RIX,"x")))
