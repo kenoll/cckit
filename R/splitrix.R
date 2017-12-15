@@ -1,5 +1,5 @@
 #' @title Split RIX
-#' @description Split RIX (CC0XXxCC0XX) into dam and sire
+#' @description Split RIX (CC0XXxCC0XX) column into "dam" and "sire" columns
 #'
 #' @param df
 #'

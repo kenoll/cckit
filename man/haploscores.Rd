@@ -13,14 +13,25 @@ haploscores(chromo, start, end, allele.effects)
 
 \item{end}{Numeric, locus end position (Mb).}
 
-\item{allele.effects}{Data frame, describes allele effects (e.g. A.score = 0, B.score = 1)}
+\item{allele.effects}{Data frame, describes allele effects (e.g. A.score = 0, B.score = 1...)}
 }
 \value{
-haplos
+Data frame containing strain, alias, chromosome, haplotype, start_position, end_position, allele effect score, and founder
 }
 \description{
-Generate scores based on haplotype effects
+Associate allele effect scores with each CC strain based on founder haplotype
 }
 \examples{
+allele.effects=c(
+A.score <- 0 ,
+B.score <- 1 ,
+C.score <- 0 ,
+D.score <- 1 ,
+E.score <- 0 ,
+F.score <- 0 ,
+G.score <- 0 ,
+H.score <- 1 )
+
+haploscores(1, 70.5, 72, allele.effects)
 
 }

@@ -1,11 +1,11 @@
 #' @title Alias 2 Line
-#' @description Old CC Alias to New CC Line
+#' @description Convert from old CC nomenclature to CC0XX line designations
 #'
-#' @param df
-#' @param strain.col Character, name of column containing strains to be changed- not required if is.rix=T.
-#' @param is.rix Logical, is the data from inbred crosses (RIX)?
+#' @param df  Input data frame which contains a column with old CC alias names
+#' @param strain.col Character, name of column containing strains to be changed. Not required if is.rix=T.
+#' @param is.rix Logical, is the data from inbred crosses (RIX)? Defaults to FALSE.
 #'
-#' @return df
+#' @return Input data frame with CC line converted to new nomenclature
 #'
 #' @examples
 #' @export
@@ -55,13 +55,13 @@ alias2line <- function(df,strain.col,is.rix=F){
 
 
 #' @title Line 2 Alias
-#' @description New CC Line to Old CC Alias
+#' @description Convert from new CC0XX line designations to old CC nomenclature
 #'
-#' @param df
+#' @param df Input data frame which contains a column with new CC line designations
 #' @param strain.col Character, name of column containing strains to be changed- not required if is.rix=T.
 #' @param is.rix Logical, is the data from inbred crosses (RIX)?
 #'
-#' @return df
+#' @return Input data frame with CC line designation converted to old alias nomenclature
 #'
 #' @examples
 #' @export

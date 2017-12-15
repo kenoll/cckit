@@ -4,17 +4,18 @@
 \alias{line2alias}
 \title{Line 2 Alias}
 \usage{
-line2alias(df)
+line2alias(df, strain.col, is.rix = F)
 }
 \arguments{
-\item{df}{}
+\item{df}{Input data frame which contains a column with new CC line designations}
+
+\item{strain.col}{Character, name of column containing strains to be changed- not required if is.rix=T.}
+
+\item{is.rix}{Logical, is the data from inbred crosses (RIX)?}
 }
 \value{
-df
+Input data frame with CC line designation converted to old alias nomenclature
 }
 \description{
-New CC Line to Old CC Alias
-}
-\examples{
-
+Convert from new CC0XX line designations to old CC nomenclature
 }

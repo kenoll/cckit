@@ -13,12 +13,26 @@ haploscores2(chromo, start, end, allele.effects)
 
 \item{end}{Numeric, locus end position (Mb).}
 
-\item{allele.effects}{Data frame, describes allele effects (e.g. A.score = 0, B.score = 1)}
+\item{allele.effects}{Data frame, describes allele effects (e.g. A.score = 0, B.score = 1...)}
 }
 \value{
-haplos
+Data frame containing strain, alias, chromosome, haplotype, start_position, end_position, allele effect score, and founder
 }
 \description{
-Generate scores based on haplotype effects only for animals
-with no recombinations within the locus or heterozygosity
+Associate allele effect scores with each CC strain based on founder haplotype,
+only for CC strains with NO recombinations within the locus and
+NO residual heterozygosity
+}
+\examples{
+allele.effects=c(
+A.score <- 0 ,
+B.score <- 1 ,
+C.score <- 0 ,
+D.score <- 1 ,
+E.score <- 0 ,
+F.score <- 0 ,
+G.score <- 0 ,
+H.score <- 1 )
+
+haploscores2(chromo = 1, start = 70.5, end = 72)
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/haploscores.R
 \name{haploscores3}
 \alias{haploscores3}
-\title{Complex Haplotype Scores}
+\title{Complex Haplotype Scores (Haplotype Scores 3)}
 \usage{
 haploscores3(chromo, start, end, allele.effects)
 }
@@ -13,12 +13,26 @@ haploscores3(chromo, start, end, allele.effects)
 
 \item{end}{Numeric, locus end position (Mb).}
 
-\item{allele.effects}{Data frame, describes allele effects (e.g. A.score = 0, B.score = 1)}
+\item{allele.effects}{Data frame, describes allele effects (e.g. A.score = 0, B.score = 1...)}
 }
 \value{
-multi
+Data frame containing strain, alias, chromosome, haplotype, start_position, end_position, allele effect score, and founder
 }
 \description{
-Generate scores based on haplotype effects only for animals
-with residual heterozygosity or recombinations within the locus
+Associate allele effect scores with each CC strain based on founder haplotype,
+ONLy for CC strains WITH recombinations within the locus OR WITH residual heterozygosity
+}
+\examples{
+allele.effects=c(
+A.score <- 0 ,
+B.score <- 1 ,
+C.score <- 0 ,
+D.score <- 1 ,
+E.score <- 0 ,
+F.score <- 0 ,
+G.score <- 0 ,
+H.score <- 1 )
+
+haploscores3(1, 70.5, 72, allele.effects)
+
 }

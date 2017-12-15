@@ -1,14 +1,14 @@
 #' @title Locus Haplotype Scores
 #'
-#' @description Add haplotypes and generate allele scores at a locus of interest
+#' @description Get founder haplotype at a locus of interest
 #'
 #' @param chromo Integer, chromosome number.
 #' @param start Numeric, locus start position (Mb).
 #' @param end Numeric, locus end position (Mb).
 #'
-#' @return region
+#' @return Data frame containing strain, alias, chromosome, haplotype, start_position, end_position, and founder
 #'
-#' @examples head(locushaplos(1,20.2,21.4))
+#' @examples locushaplos(1, 70.5, 72)
 #'
 #' @export
 
@@ -37,16 +37,26 @@ locushaplos <- function(chromo,start,end){
 
 #' @title Haplotype Scores
 #'
-#' @description Generate scores based on haplotype effects
+#' @description Associate allele effect scores with each CC strain based on founder haplotype
 #'
 #' @param chromo Integer, chromosome number.
 #' @param start Numeric, locus start position (Mb).
 #' @param end Numeric, locus end position (Mb).
-#' @param allele.effects Data frame, describes allele effects (e.g. A.score = 0, B.score = 1)
+#' @param allele.effects Data frame, describes allele effects (e.g. A.score = 0, B.score = 1...)
 #'
-#' @return haplos
+#' @return Data frame containing strain, alias, chromosome, haplotype, start_position, end_position, allele effect score, and founder
 #'
-#' @examples
+#' @examples allele.effects=c(
+#' A.score <- 0 ,
+#' B.score <- 1 ,
+#' C.score <- 0 ,
+#' D.score <- 1 ,
+#' E.score <- 0 ,
+#' F.score <- 0 ,
+#' G.score <- 0 ,
+#' H.score <- 1 )
+#'
+#' haploscores(1, 70.5, 72, allele.effects)
 #'
 #' @export
 
@@ -69,16 +79,27 @@ haploscores <- function(chromo,start,end,allele.effects){
 
 #' @title Haplotype Scores 2
 #'
-#' @description Generate scores based on haplotype effects only for animals
-#' with no recombinations within the locus or heterozygosity
+#' @description Associate allele effect scores with each CC strain based on founder haplotype,
+#' only for CC strains with NO recombinations within the locus and
+#' NO residual heterozygosity
 #'
 #' @param chromo Integer, chromosome number.
 #' @param start Numeric, locus start position (Mb).
 #' @param end Numeric, locus end position (Mb).
-#' @param allele.effects Data frame, describes allele effects (e.g. A.score = 0, B.score = 1)
+#' @param allele.effects Data frame, describes allele effects (e.g. A.score = 0, B.score = 1...)
 #'
-#' @return haplos
-#' @examples
+#' @return Data frame containing strain, alias, chromosome, haplotype, start_position, end_position, allele effect score, and founder
+#' @examples allele.effects=c(
+#' A.score <- 0 ,
+#' B.score <- 1 ,
+#' C.score <- 0 ,
+#' D.score <- 1 ,
+#' E.score <- 0 ,
+#' F.score <- 0 ,
+#' G.score <- 0 ,
+#' H.score <- 1 )
+#'
+#' haploscores2(chromo = 1, start = 70.5, end = 72)
 #' @export
 
 haploscores2 <- function(chromo,start,end,allele.effects){
@@ -87,18 +108,31 @@ haploscores2 <- function(chromo,start,end,allele.effects){
   return(haplos2)
 }
 
-#' @title Complex Haplotype Scores
+#' @title Complex Haplotype Scores (Haplotype Scores 3)
 #'
-#' @description Generate scores based on haplotype effects only for animals
-#' with residual heterozygosity or recombinations within the locus
+#' @description Associate allele effect scores with each CC strain based on founder haplotype,
+#' ONLy for CC strains WITH recombinations within the locus OR WITH residual heterozygosity
 #'
 #' @param chromo Integer, chromosome number.
 #' @param start Numeric, locus start position (Mb).
 #' @param end Numeric, locus end position (Mb).
-#' @param allele.effects Data frame, describes allele effects (e.g. A.score = 0, B.score = 1)
+#' @param allele.effects Data frame, describes allele effects (e.g. A.score = 0, B.score = 1...)
 #'
-#' @return multi
-#' @examples
+#' @return Data frame containing strain, alias, chromosome, haplotype, start_position, end_position, allele effect score, and founder
+#'
+#'
+#' @examples allele.effects=c(
+#' A.score <- 0 ,
+#' B.score <- 1 ,
+#' C.score <- 0 ,
+#' D.score <- 1 ,
+#' E.score <- 0 ,
+#' F.score <- 0 ,
+#' G.score <- 0 ,
+#' H.score <- 1 )
+#'
+#' haploscores3(1, 70.5, 72, allele.effects)
+#'
 #' @export
 
 haploscores3 <- function(chromo,start,end,allele.effects){
@@ -119,10 +153,20 @@ haploscores3 <- function(chromo,start,end,allele.effects){
 #' @param chromo Integer, chromosome number.
 #' @param start Numeric, locus start position (Mb).
 #' @param end Numeric, locus end position (Mb).
-#' @param allele.effects Data frame, describes allele effects (e.g. A.score = 0, B.score = 1)
+#' @param allele.effects Data frame, describes allele effects (e.g. A.score = 0, B.score = 1...)
 #'
-#' @return score.avg
-#' @examples
+#' @return Data frame containing strain, alias, and allele effects
+#' @examples allele.effects=c(
+#' A.score <- 0 ,
+#' B.score <- 1 ,
+#' C.score <- 0 ,
+#' D.score <- 1 ,
+#' E.score <- 0 ,
+#' F.score <- 0 ,
+#' G.score <- 0 ,
+#' H.score <- 1 )
+#'
+#' quickeffects(chromo = 1, start = 70.5, end = 72)
 #' @export
 
 #### for effects only, not haplotypes ####

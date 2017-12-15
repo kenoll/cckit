@@ -14,12 +14,12 @@ locushaplos(chromo, start, end)
 \item{end}{Numeric, locus end position (Mb).}
 }
 \value{
-region
+Data frame containing strain, alias, chromosome, haplotype, start_position, end_position, and founder
 }
 \description{
-Add haplotypes and generate allele scores at a locus of interest
+Get founder haplotype at a locus of interest
 }
 \examples{
-head(locushaplos(1,10000000,13000000))
+locushaplos(1, 70.5, 72)
 
 }
