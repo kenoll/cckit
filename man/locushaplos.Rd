@@ -14,7 +14,8 @@ locushaplos(chromo, start, end)
 \item{end}{Numeric, locus end position (Mb).}
 }
 \value{
-Data frame containing strain, alias, chromosome, haplotype, start_position, end_position, and founder
+Data frame containing strain, alias, chromosome,
+haplotype, start_position, end_position, and founder
 }
 \description{
 Get founder haplotype at a locus of interest

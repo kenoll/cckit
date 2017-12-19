@@ -6,7 +6,8 @@
 #' @param start Numeric, locus start position (Mb).
 #' @param end Numeric, locus end position (Mb).
 #'
-#' @return Data frame containing strain, alias, chromosome, haplotype, start_position, end_position, and founder
+#' @return Data frame containing strain, alias, chromosome,
+#' haplotype, start_position, end_position, and founder
 #'
 #' @examples locushaplos(1, 70.5, 72)
 #'
@@ -32,6 +33,7 @@ locushaplos <- function(chromo,start,end){
 
   region <- merge(region.2,region.3,all=T)
   region <- merge(region,region.4,all=T)
+
   return(region)
 }
 
@@ -42,9 +44,11 @@ locushaplos <- function(chromo,start,end){
 #' @param chromo Integer, chromosome number.
 #' @param start Numeric, locus start position (Mb).
 #' @param end Numeric, locus end position (Mb).
-#' @param allele.effects Data frame, describes allele effects (e.g. A.score = 0, B.score = 1...)
+#' @param allele.effects Data frame, describes allele effects
+#' (e.g. A.score = 0, B.score = 1...)
 #'
-#' @return Data frame containing strain, alias, chromosome, haplotype, start_position, end_position, allele effect score, and founder
+#' @return Data frame containing strain, alias, chromosome,
+#' haplotype, start_position, end_position, allele effect score, and founder
 #'
 #' @examples allele.effects=c(
 #' A.score <- 0 ,
@@ -79,16 +83,18 @@ haploscores <- function(chromo,start,end,allele.effects){
 
 #' @title Haplotype Scores 2
 #'
-#' @description Associate allele effect scores with each CC strain based on founder haplotype,
-#' only for CC strains with NO recombinations within the locus and
-#' NO residual heterozygosity
+#' @description Associate allele effect scores with each CC strain
+#' based on founder haplotype, only for CC strains with NO recombinations
+#' within the locus and NO residual heterozygosity
 #'
 #' @param chromo Integer, chromosome number.
 #' @param start Numeric, locus start position (Mb).
 #' @param end Numeric, locus end position (Mb).
-#' @param allele.effects Data frame, describes allele effects (e.g. A.score = 0, B.score = 1...)
+#' @param allele.effects Data frame, describes allele effects
+#' (e.g. A.score = 0, B.score = 1...)
 #'
-#' @return Data frame containing strain, alias, chromosome, haplotype, start_position, end_position, allele effect score, and founder
+#' @return Data frame containing strain, alias, chromosome,
+#' haplotype, start_position, end_position, allele effect score, and founder
 #' @examples allele.effects=c(
 #' A.score <- 0 ,
 #' B.score <- 1 ,
@@ -110,15 +116,18 @@ haploscores2 <- function(chromo,start,end,allele.effects){
 
 #' @title Complex Haplotype Scores (Haplotype Scores 3)
 #'
-#' @description Associate allele effect scores with each CC strain based on founder haplotype,
-#' ONLy for CC strains WITH recombinations within the locus OR WITH residual heterozygosity
+#' @description Associate allele effect scores with each
+#' CC strain based on founder haplotype, ONLY for CC strains
+#' WITH recombinations within the locus OR WITH residual heterozygosity
 #'
 #' @param chromo Integer, chromosome number.
 #' @param start Numeric, locus start position (Mb).
 #' @param end Numeric, locus end position (Mb).
-#' @param allele.effects Data frame, describes allele effects (e.g. A.score = 0, B.score = 1...)
+#' @param allele.effects Data frame, describes allele effects
+#' (e.g. A.score = 0, B.score = 1...)
 #'
-#' @return Data frame containing strain, alias, chromosome, haplotype, start_position, end_position, allele effect score, and founder
+#' @return Data frame containing strain, alias, chromosome,
+#' haplotype, start_position, end_position, allele effect score, and founder
 #'
 #'
 #' @examples allele.effects=c(
@@ -145,10 +154,9 @@ haploscores3 <- function(chromo,start,end,allele.effects){
 
 #' @title Quick Allele Effects
 #'
-#' @description Quickly enerate scores based on haplotype effects with no founder attributions
-#' For strains with residual heterozygosity and/or recombinations
-#' Starts by averaging all allele effects on same chromosome
-#' Then averages chromosomes
+#' @description Quickly generate scores based on haplotype effects with no founder attributions.
+#' For strains with residual heterozygosity and/or recombinations, allele effects on the same
+#' same chromosome are averaged, followed by averaging of the two chromosomes.
 #'
 #' @param chromo Integer, chromosome number.
 #' @param start Numeric, locus start position (Mb).

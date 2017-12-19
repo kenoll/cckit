@@ -13,15 +13,17 @@ haploscores2(chromo, start, end, allele.effects)
 
 \item{end}{Numeric, locus end position (Mb).}
 
-\item{allele.effects}{Data frame, describes allele effects (e.g. A.score = 0, B.score = 1...)}
+\item{allele.effects}{Data frame, describes allele effects
+(e.g. A.score = 0, B.score = 1...)}
 }
 \value{
-Data frame containing strain, alias, chromosome, haplotype, start_position, end_position, allele effect score, and founder
+Data frame containing strain, alias, chromosome,
+haplotype, start_position, end_position, allele effect score, and founder
 }
 \description{
-Associate allele effect scores with each CC strain based on founder haplotype,
-only for CC strains with NO recombinations within the locus and
-NO residual heterozygosity
+Associate allele effect scores with each CC strain
+based on founder haplotype, only for CC strains with NO recombinations
+within the locus and NO residual heterozygosity
 }
 \examples{
 allele.effects=c(

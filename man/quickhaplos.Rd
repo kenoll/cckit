@@ -19,10 +19,9 @@ quickhaplos(chromo, start, end, allele.effects)
 Data frame containing strain, alias, and allele effects
 }
 \description{
-Quickly enerate scores based on haplotype effects with no founder attributions
-For strains with residual heterozygosity and/or recombinations
-Starts by averaging all allele effects on same chromosome
-Then averages chromosomes
+Quickly generate scores based on haplotype effects with no founder attributions.
+For strains with residual heterozygosity and/or recombinations, allele effects on the same
+same chromosome are averaged, followed by averaging of the two chromosomes.
 }
 \examples{
 allele.effects=c(
