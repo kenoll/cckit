@@ -188,3 +188,37 @@ quickhaplos=function(chromo,start,end,allele.effects){
   return(score.avg)
 }
 
+
+#' @title Locus Haplotype Scores - Same Effect Merged for Complex
+#'
+#' @description Associate allele effect scores with each CC strain
+#' based on founder haplotype - ONLY for CC strains with recombinations
+#' or residual heterozygosity that DO NOT EFFECT the haplotype score
+#'
+#' @param chromo Integer, chromosome number.
+#' @param start Numeric, locus start position (Mb).
+#' @param end Numeric, locus end position (Mb).
+#' @param allele.effects Data frame, describes allele effects
+#' (e.g. A.score = 0, B.score = 1...)
+#'
+#' @return Data frame containing strain, alias, chromosome,
+#' haplotype, start_position, end_position, and founder
+#'
+#' @examples locushaplos(1, 70.5, 72)
+#'
+#' @export
+
+haploscores4 <- function (chromo, start, end, allele.effects)
+{
+
+  haplos <- haploscores(chromo, start, end, allele.effects) %>%
+    group_by(strain,alias,chromosome,allele.effects) %>%
+    summarise(haplotype = paste(haplotype, collapse = ", "),
+              start_position = paste(start_position, collapse = ", "),
+              end_position = paste(end_position, collapse = ", "),
+              founders = paste(founders, collapse = ", "))
+
+  haplos <- haplos[!(duplicated(haplos$strain)), ]
+
+  return(haplos)
+}
