@@ -219,7 +219,7 @@ haploscores4 <- function (chromo, start, end, allele.effects)
               end_position = paste(end_position, collapse = ", "),
               founders = paste(founders, collapse = ", "))
 
-  haplos <- haplos[!(duplicated(haplos$strain)), ]
+  haplos <- haplos[!(duplicated(haplos$strain)|duplicated(haplos$strain,from.last=T)), ]
 
   return(haplos)
 }
