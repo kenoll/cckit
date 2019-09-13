@@ -10,7 +10,6 @@
 #' @examples
 #' @export
 
-
 alias2line <- function(df,strain.col,is.rix=F){
 
   if (is.rix == F) {
@@ -52,7 +51,6 @@ alias2line <- function(df,strain.col,is.rix=F){
         return(df)
   }
 }
-
 
 #' @title Line 2 Alias
 #' @description Convert from new CC0XX line designations to old CC nomenclature
