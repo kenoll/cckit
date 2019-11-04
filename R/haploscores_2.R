@@ -16,23 +16,27 @@
 
 #functions
 locushaplos <- function(chromo,start,end){
+  region.1 <- subset(mosaics,
+                     mosaics$start_position<=start*1000000 &
+                       mosaics$end_position>=end*1000000 &
+                       mosaics$chromosome==chromo)
+
   region.2 <- subset(mosaics,
-                  mosaics$start_position<=start*1000000 &
-                    mosaics$end_position>=start*1000000 &
-                    mosaics$chromosome==chromo)
+                     mosaics$start_position<=start*1000000 &
+                       mosaics$end_position>=start*1000000 &
+                       mosaics$chromosome==chromo)
 
   region.3 <- subset(mosaics,
-                  mosaics$start_position<=end*1000000 &
-                    mosaics$end_position>=end*1000000 &
-                    mosaics$chromosome==chromo)
+                     mosaics$start_position<=end*1000000 &
+                       mosaics$end_position>=end*1000000 &
+                       mosaics$chromosome==chromo)
 
   region.4 <- subset(mosaics,
-                  mosaics$start_position>=start*1000000 &
-                    mosaics$end_position<=end*1000000 &
-                    mosaics$chromosome==chromo)
+                     mosaics$start_position>=start*1000000 &
+                       mosaics$end_position<=end*1000000 &
+                       mosaics$chromosome==chromo)
 
-  region <- merge(region.2,region.3,all=T)
-  region <- merge(region,region.4,all=T)
+  region <- merge(region.2,region.3,all=T) %>% merge(region.4,all=T) %>% merge(region.1,all=T)
 
   return(region)
 }
@@ -217,7 +221,7 @@ haploscores4 <- function (chromo, start, end, allele.effects)
               end_position = paste(end_position, collapse = ", "),
               founders = paste(founders, collapse = ", "))
 
-  haplos <- haplos[!(duplicated(haplos$strain)), ]
+  haplos <- haplos[!(duplicated(haplos$strain)|duplicated(haplos$strain,fromLast=T)), ]
 
   return(haplos)
 }
